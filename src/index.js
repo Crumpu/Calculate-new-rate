@@ -25,9 +25,10 @@ function rate(winRate, loseRate) {
     return (winRate = loseRate);
   }
   if (winRate < loseRate) {
-    return ((loseRate - winRate + 5) / 3).toFixed(2);
+        const newWinRate = winRate + ((loseRate - winRate + 5) / 3);
+    return newWinRate.toFixed(2);
   }
-  if (winRate > loseRate) {
+  if (winRate >= loseRate) {
     if (diffInRate >= 0 && diffInRate <= 2) {
       return (winRate += 2);
     } else if (diffInRate > 2 && diffInRate < 20) {
@@ -37,7 +38,7 @@ function rate(winRate, loseRate) {
   }
 }
 
-console.log(rate(0, 26));
+console.log(rate(1, 26));
 
 //
 // switch (diffInRate) {
