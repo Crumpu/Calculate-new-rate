@@ -18,6 +18,12 @@ function rate(winRate, loseRate) {
   if (Number.isNaN(diffInRate)) {
     return 'Enter number, please!';
   }
+  if (typeof winRate !== 'number') {
+    return 'Incorrect winRate value, enter number, please!';
+  }
+  if (typeof loseRate !== 'number') {
+    return 'Incorrect loseRate value, enter number, please!';
+  }
   if (winRate < 0 || loseRate < 0) {
     return 'Rating cannot be less than 0';
   }
@@ -25,7 +31,7 @@ function rate(winRate, loseRate) {
     return (winRate = loseRate);
   }
   if (winRate < loseRate) {
-        const newWinRate = winRate + ((loseRate - winRate + 5) / 3);
+    const newWinRate = winRate + (loseRate - winRate + 5) / 3;
     return newWinRate.toFixed(2);
   }
   if (winRate >= loseRate) {
@@ -38,7 +44,7 @@ function rate(winRate, loseRate) {
   }
 }
 
-console.log(rate(1, 26));
+console.log(rate(6, 2));
 
 //
 // switch (diffInRate) {
