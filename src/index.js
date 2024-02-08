@@ -15,53 +15,31 @@
  */
 function rate(winRate, loseRate) {
   const diffInRate = winRate - loseRate;
-  if (Number.isNaN(diffInRate)) {
-    return 'Enter number, please!';
+  if (
+    Number.isNaN(diffInRate) ||
+    typeof winRate !== 'number' ||
+    typeof loseRate !== 'number' ||
+    winRate < 0 ||
+    loseRate < 0
+  ) {
+    return 'Entered wrong data';
   }
-  if (typeof winRate !== 'number') {
-    return 'Incorrect winRate value, enter number, please!';
-  }
-  if (typeof loseRate !== 'number') {
-    return 'Incorrect loseRate value, enter number, please!';
-  }
-  if (winRate < 0 || loseRate < 0) {
-    return 'Rating cannot be less than 0';
-  }
+  
+
   if (winRate === 0) {
     return (winRate = loseRate);
   }
   if (winRate < loseRate) {
-    const newWinRate = winRate + (loseRate - winRate + 5) / 3;
+    const newWinRate = winRate + (Math.abs(diffInRate) + 5) / 3;
     return newWinRate.toFixed(2);
   }
-  if (winRate >= loseRate) {
-    if (diffInRate >= 0 && diffInRate <= 2) {
-      return (winRate += 2);
-    } else if (diffInRate > 2 && diffInRate < 20) {
-      return (winRate += 1);
-    } else diffInRate >= 20;
-    return winRate;
-  }
+
+  if (diffInRate >= 0 && diffInRate <= 2) {
+    return (winRate += 2);
+  } else if (diffInRate > 2 && diffInRate < 20) {
+    return (winRate += 1);
+  } else diffInRate >= 20;
+  return winRate;
 }
 
 console.log(rate(6, 2));
-
-//
-// switch (diffInRate) {
-//     case Number.isNaN(diffInRate):
-//       console.log('Enter number, please!');
-//       break;
-//     case winRate < 0 || loseRate < 0:
-//       console.log('Rating cannot be less than 0');
-//       break;
-//     case diffInRate >= 0 && diffInRate <= 2:
-//       winRate += 2;
-//       break;
-//     case diffInRate > 2 && diffInRate < 20:
-//       winRate += 1;
-//       break;
-//     case diffInRate >= 20:
-//       winRate;
-//       break;
-//     default:
-//       console.log('seg');
